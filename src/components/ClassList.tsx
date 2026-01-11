@@ -1,14 +1,15 @@
 import '../css/ClassLists.css';
 import { CLASS_LIST } from '../consts';
 import type { Attributes as AttributesType, Class } from '../types';
+import { useState } from 'react';
 
 interface ClassListProps {
     attributes: AttributesType;
 }
 
 export const ClassList = ({ attributes }: ClassListProps) => {
-    const meetsRequirements = (className: Class): boolean => {
-        const classRequirements = CLASS_LIST[className];
+    const [classToShow, setClassToShow] = useState<Class | null>(null)
+    const meetsRequirements = (classRequirements: AttributesType): boolean => {
         return Object.keys(classRequirements).every(currAttribute => {
             return attributes[currAttribute] >= classRequirements[currAttribute];
         });
@@ -17,14 +18,28 @@ export const ClassList = ({ attributes }: ClassListProps) => {
     return (
         <div className="class-list-container">
             <h1>Class List</h1>
-            {Object.entries(CLASS_LIST).map(([className]) => {
-                const meetsReq = meetsRequirements(className as Class);
-                return (
-                    <div key={className} className="class-row">
-                        <span className={`class-name ${meetsReq ? 'meets-requirements' : ''}`}>{className}</span>
-                    </div>
-                )
-            })}
+            {classToShow ? (
+                <>
+                    <button onClick={() => setClassToShow(null)}>Close</button>
+                    <ul className="class-list-reqs">
+                        {Object.entries(CLASS_LIST[classToShow]).map(([attribute, value]) => (
+                            <li key={attribute}>{attribute}: {value as number}</li>
+                        ))}
+                    </ul>
+                </>
+            ) : (
+                Object.entries(CLASS_LIST).map(([className]) => {
+                    const classRequirements = CLASS_LIST[className];
+                    const meetsReq = meetsRequirements(classRequirements);
+                    return (
+                        <div key={className} className="class-row"> 
+                            <span className={meetsReq ? 'meets-requirements' : ''} onClick={() => setClassToShow(className as Class)}>
+                                {className}
+                            </span>
+                        </div>
+                    )
+                })
+            )}
         </div>
     )
 }

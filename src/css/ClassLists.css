@@ -7,6 +7,10 @@
     border: 1px solid white;
 }
 
-.class-name.meets-requirements {
+.meets-requirements {
     color: red;
+}
+
+.class-list-reqs {
+    list-style-type: none;
 }
