@@ -3,10 +3,12 @@ import './App.css';
 import { initialAttributes } from './consts';
 import { Attributes } from './components/Attributes';
 import { ClassList } from './components/ClassList';
+import { Skills } from './components/Skills';
 import type { Attributes as AttributesType } from './types';
 
 function App() {
   const [attributes, setAttributes] = useState<AttributesType>(initialAttributes);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -16,6 +18,7 @@ function App() {
         <div className="App-section-content">
           <Attributes attributes={attributes} setAttributes={setAttributes} />
           <ClassList attributes={attributes} />
+          <Skills intelligenceModifier={attributes.Intelligence.modifier} attributes={attributes}/>
         </div>
       </section>
     </div>

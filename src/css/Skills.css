@@ -1,0 +1,24 @@
+.skills-container {
+    width: 33.33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+}
+
+.skills-header {
+    margin-bottom: 1rem;
+}
+
+.points-info {
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.skill-row {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

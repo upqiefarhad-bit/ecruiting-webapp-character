@@ -1,4 +1,5 @@
-import type { Attributes, Class } from "./types";
+import type { Attributes, AttributeValues, Class } from "./types";
+import { calculateModifier } from "./utils";
 
 export const ATTRIBUTE_LIST = [
     'Strength',
@@ -11,16 +12,18 @@ export const ATTRIBUTE_LIST = [
 
 export const initialAttributeValue = 5;
 
+
+
 export const initialAttributes: Attributes = {
-    Strength: initialAttributeValue,
-    Dexterity: initialAttributeValue,
-    Constitution: initialAttributeValue,
-    Intelligence: initialAttributeValue,
-    Wisdom: initialAttributeValue,
-    Charisma: initialAttributeValue,
+    Strength: { value: initialAttributeValue, modifier: calculateModifier(initialAttributeValue) },
+    Dexterity: { value: initialAttributeValue, modifier: calculateModifier(initialAttributeValue) },
+    Constitution: { value: initialAttributeValue, modifier: calculateModifier(initialAttributeValue) },
+    Intelligence: { value: initialAttributeValue, modifier: calculateModifier(initialAttributeValue) },
+    Wisdom: { value: initialAttributeValue, modifier: calculateModifier(initialAttributeValue) },
+    Charisma: { value: initialAttributeValue, modifier: calculateModifier(initialAttributeValue) },
 };
 
-export const CLASS_LIST: Record<Class, Attributes> = {
+export const CLASS_LIST: Record<Class, AttributeValues> = {
     'Barbarian': {
         'Strength': 14,
         'Dexterity': 9,

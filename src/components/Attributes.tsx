@@ -1,5 +1,6 @@
 import { ATTRIBUTE_LIST } from '../consts';
 import type { Attributes as AttributesType } from '../types';
+import { calculateModifier } from '../utils';
 import '../css/Attributes.css';
 
 interface AttributesProps {
@@ -8,39 +9,42 @@ interface AttributesProps {
 }
 
 export const Attributes = ({ attributes, setAttributes }: AttributesProps) => {
-    const calculateModifier = (value: number): number => {
-        return Math.floor((value - 10) / 2);
-    };
-
     const formatModifier = (modifier: number): string => {
         return modifier >= 0 ? `+${modifier}` : `${modifier}`;
     };
 
     const incrementAttribute = (attributeName: keyof AttributesType) => {
-        setAttributes(prev => ({
-            ...prev,
-            [attributeName]: prev[attributeName] + 1,
-        }));
+        setAttributes(prev => {
+            const newValue = prev[attributeName].value + 1;
+            const newModifier = calculateModifier(newValue);
+            return {
+                ...prev,
+                [attributeName]: { value: newValue, modifier: newModifier },
+            };
+        });
     };
 
     const decrementAttribute = (attributeName: keyof AttributesType) => {
-        setAttributes(prev => ({
-            ...prev,
-            [attributeName]: prev[attributeName] - 1,
-        }));
+        setAttributes(prev => {
+            const newValue = prev[attributeName].value - 1;
+            const newModifier = calculateModifier(newValue);
+            return {
+                ...prev,
+                [attributeName]: { value: newValue, modifier: newModifier },
+            };
+        });
     };
 
     return (
         <div className="attributes-container">
             <h1 className="attributes-header">Attributes</h1>
             {ATTRIBUTE_LIST.map(attributeName => {
-                const attributeValue = attributes[attributeName];
-                const modifier = calculateModifier(attributeValue);
-                const formattedModifier = formatModifier(modifier);
+                const attributeData = attributes[attributeName as keyof AttributesType];
+                const formattedModifier = formatModifier(attributeData.modifier);
                 return (
                     <div key={attributeName} className="attribute-row">
                         <span>{attributeName} (Modifier: {formattedModifier}):</span>
-                        <span>{attributeValue}</span>
+                        <span>{attributeData.value}</span>
                         <button onClick={() => decrementAttribute(attributeName as keyof AttributesType)}>-</button>
                         <button onClick={() => incrementAttribute(attributeName as keyof AttributesType)}>+</button>
                     </div>

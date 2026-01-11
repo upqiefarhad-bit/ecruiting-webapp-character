@@ -1,6 +1,6 @@
 import '../css/ClassLists.css';
 import { CLASS_LIST } from '../consts';
-import type { Attributes as AttributesType, Class } from '../types';
+import type { Attributes as AttributesType, AttributeValues, Class } from '../types';
 import { useState } from 'react';
 
 interface ClassListProps {
@@ -9,9 +9,9 @@ interface ClassListProps {
 
 export const ClassList = ({ attributes }: ClassListProps) => {
     const [classToShow, setClassToShow] = useState<Class | null>(null)
-    const meetsRequirements = (classRequirements: AttributesType): boolean => {
+    const meetsRequirements = (classRequirements: AttributeValues): boolean => {
         return Object.keys(classRequirements).every(currAttribute => {
-            return attributes[currAttribute] >= classRequirements[currAttribute];
+            return attributes[currAttribute as keyof AttributesType].value >= classRequirements[currAttribute as keyof AttributeValues];
         });
     };
 
