@@ -33,7 +33,7 @@ export const ClassList = ({ attributes }: ClassListProps) => {
                     const meetsReq = meetsRequirements(classRequirements);
                     return (
                         <div key={className} className="class-row"> 
-                            <span className={meetsReq ? 'meets-requirements' : ''} onClick={() => setClassToShow(className as Class)}>
+                            <span className={`class-name ${meetsReq ? 'meets-requirements' : ''}`} onClick={() => setClassToShow(className as Class)}>
                                 {className}
                             </span>
                         </div>

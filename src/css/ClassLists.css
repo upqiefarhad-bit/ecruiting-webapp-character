@@ -7,8 +7,14 @@
     border: 1px solid white;
 }
 
-.meets-requirements {
+.class-name.meets-requirements {
     color: red;
+}
+
+.class-name {
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .class-list-reqs {
