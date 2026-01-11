@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from './consts.js';
+import { Attributes } from './components/Attributes';
 
 
 function App() {
@@ -12,10 +13,7 @@ function App() {
       </header>
       <section className="App-section">
         <div>
-          Value:
-          {num}
-          <button>+</button>
-          <button>-</button>
+          <Attributes />
         </div>
       </section>
     </div>

@@ -1,0 +1,28 @@
+.attributes-container {
+    margin-top: 1rem;
+  width: 33.33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+}
+
+.attributes-header {
+  margin-bottom: 20px;
+}
+
+.attribute-row {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.attribute-name {
+  min-width: 120px;
+}
+
+.attribute-value {
+  min-width: 30px;
+}
