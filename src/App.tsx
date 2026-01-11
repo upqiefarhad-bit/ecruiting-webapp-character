@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import './App.css';
-import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from './consts.js';
+import { initialAttributes } from './consts';
 import { Attributes } from './components/Attributes';
-
+import { ClassList } from './components/ClassList';
+import type { Attributes as AttributesType } from './types';
 
 function App() {
-  const [num, setNum] = useState<number>(0);
+  const [attributes, setAttributes] = useState<AttributesType>(initialAttributes);
   return (
     <div className="App">
       <header className="App-header">
         <h1>React Coding Exercise</h1>
       </header>
       <section className="App-section">
-        <div>
-          <Attributes />
+        <div className="App-section-content">
+          <Attributes attributes={attributes} setAttributes={setAttributes} />
+          <ClassList attributes={attributes} />
         </div>
       </section>
     </div>

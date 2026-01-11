@@ -9,6 +9,17 @@ export const ATTRIBUTE_LIST = [
     'Charisma',
 ];
 
+export const initialAttributeValue = 5;
+
+export const initialAttributes: Attributes = {
+    Strength: initialAttributeValue,
+    Dexterity: initialAttributeValue,
+    Constitution: initialAttributeValue,
+    Intelligence: initialAttributeValue,
+    Wisdom: initialAttributeValue,
+    Charisma: initialAttributeValue,
+};
+
 export const CLASS_LIST: Record<Class, Attributes> = {
     'Barbarian': {
         'Strength': 14,

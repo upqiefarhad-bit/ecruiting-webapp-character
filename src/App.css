@@ -5,6 +5,14 @@
   flex-direction: column;
 }
 
+.App-section-content {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

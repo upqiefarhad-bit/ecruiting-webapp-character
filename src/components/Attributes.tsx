@@ -1,19 +1,13 @@
-import { useState } from 'react';
 import { ATTRIBUTE_LIST } from '../consts';
 import type { Attributes as AttributesType } from '../types';
 import '../css/Attributes.css';
 
-const initialAttributes: AttributesType = {
-    Strength: 10,
-    Dexterity: 10,
-    Constitution: 10,
-    Intelligence: 10,
-    Wisdom: 10,
-    Charisma: 10,
-};
+interface AttributesProps {
+    attributes: AttributesType;
+    setAttributes: React.Dispatch<React.SetStateAction<AttributesType>>;
+}
 
-export const Attributes = () => {
-    const [attributes, setAttributes] = useState<AttributesType>(initialAttributes);
+export const Attributes = ({ attributes, setAttributes }: AttributesProps) => {
 
     const incrementAttribute = (attributeName: keyof AttributesType) => {
         setAttributes(prev => ({
