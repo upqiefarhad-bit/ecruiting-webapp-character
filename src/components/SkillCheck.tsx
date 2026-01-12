@@ -48,7 +48,7 @@ export const SkillCheck = ({ characterName, attributes, skillPoints, onRoll }: S
         </label>
 
         <label>DC: 
-          <input type="number" value={dc} onChange={(e) => setDc(Number(e.target.value))} style={{ width: '50px' }} />
+          <input type="number" value={dc} onChange={(e) => setDc(Number(e.target.value))} min={0}/>
         </label>
 
         <button onClick={handleRoll}>Roll</button>
