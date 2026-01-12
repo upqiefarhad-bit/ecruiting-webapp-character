@@ -3,8 +3,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   border: 1px solid white;
+}
+
+.total {
+  margin-bottom: 1rem;
+  font-weight: bold;
 }
 
 .attributes-header {
