@@ -18,12 +18,21 @@ function App() {
   };
 
   const [characters, setCharacters] = useState<Character[]>([
-    { id: Date.now(), attributes: initialAttributes, skillPoints: getDefaultSkillPoints() }
+    { id: 1, attributes: initialAttributes, skillPoints: getDefaultSkillPoints() }
   ]);
 
+  const characterWithMaxPoints = characters.reduce((prev, current, index) => {
+    const currentTotal = Object.values(current.skillPoints).reduce((sum, val) => sum + val, 0);
+
+    const prevTotal = Object.values(prev.skillPoints).reduce((sum, val) => sum + val, 0);
+  
+    return (currentTotal > prevTotal) ? current : prev;
+  }, characters[0]);
+
   const addNewCharacter = () => {
+    const lastCharacterId = characters.length
     const newChar: Character = {
-      id: Date.now(),
+      id: lastCharacterId + 1,
       attributes: initialAttributes,
       skillPoints: getDefaultSkillPoints(),
     };
@@ -90,15 +99,16 @@ function App() {
           <span> DC: {lastResult.dc} - <strong>{lastResult.success ? "SUCCESS" : "FAILURE"}</strong></span>
         </section>
       )}
+      <SkillCheck 
+        characterName={`Character ${characterWithMaxPoints.id}`}
+        attributes={characterWithMaxPoints.attributes}
+        skillPoints={characterWithMaxPoints.skillPoints}
+        onRoll={(result) => setLastResult(result)}
+      />
       {characters.map((char, index) => (
         <section key={char.id} className="App-section">
           <h2>Character {index + 1}</h2>
-          <SkillCheck 
-              characterName={`Character ${index + 1}`}
-              attributes={char.attributes}
-              skillPoints={char.skillPoints}
-              onRoll={(result) => setLastResult(result)}
-            />
+          
           <div className="App-section-content">
             <Attributes 
               attributes={char.attributes} 

@@ -1,4 +1,4 @@
-const BASE_URL = 'https://recruiting.verylongdomaintotestwith.ca/api/upqiefarhad-bit/character';
+const BASE_URL = 'https://recruiting.verylongdomaintotestwith.ca/api/maketest/character';
 
 export const saveCharacter = async (data: any) => {
     try {
