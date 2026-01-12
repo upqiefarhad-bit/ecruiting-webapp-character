@@ -4,21 +4,17 @@ import { SKILL_LIST } from '../consts';
 import type { Attributes as AttributesType } from '../types';
 
 interface SkillsProps {
-    intelligenceModifier: number;
+    skillPoints: Record<string, number>;
+    setSkillPoints: React.Dispatch<React.SetStateAction<Record<string, number>>>;
     attributes: AttributesType;
 }
 
-export const Skills = ({ intelligenceModifier, attributes }: SkillsProps) => {
-    const [skillPoints, setSkillPoints] = useState<Record<string, number>>(() => {
-        const initial: Record<string, number> = {};
-        SKILL_LIST.forEach(skill => initial[skill.name] = 0);
-        return initial;
-    });
+export const Skills = ({ attributes, skillPoints, setSkillPoints }: SkillsProps) => {
+    const intelligenceModifier = attributes.Intelligence.modifier;
 
     const totalAvailPoints = 10 + (4 * intelligenceModifier);
 
     const totalPointsUsed = Object.values(skillPoints).reduce((acc, points) => acc + points, 0);
-
 
     const incrementSkillPoints = (skillName: string) => {
         setSkillPoints(prev => {

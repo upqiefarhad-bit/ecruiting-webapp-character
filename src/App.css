@@ -5,6 +5,18 @@
   flex-direction: column;
 }
 
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 1rem;
+
+  button {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+}
+
 .App-section-content {
   display: flex;
   flex-direction: row;
