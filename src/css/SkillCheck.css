@@ -1,0 +1,15 @@
+.skill-check-card {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+}
+
+.skill-check-content {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}

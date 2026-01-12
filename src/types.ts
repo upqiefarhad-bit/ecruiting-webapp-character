@@ -3,6 +3,22 @@ export type AttributeData = {
     modifier: number;
 };
 
+export type Character = {
+    id: number;
+    attributes: Attributes;
+    skillPoints: Record<string, number>;
+};
+
+export type CheckResult = {
+    characterName: string;
+    skillName: string;
+    skillPoints: number;
+    roll: number;
+    total: number;
+    dc: number;
+    success: boolean;
+} | null;
+
 export type Attributes = {
     Strength: AttributeData;
     Dexterity: AttributeData;
